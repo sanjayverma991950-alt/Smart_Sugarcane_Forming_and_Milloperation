@@ -30,17 +30,17 @@ export default function FarmerSeason() {
       </div>
 
       {activeSeason ? (
-        <div className="rounded-3xl border border-brand-200 bg-white p-6 shadow-sm md:p-8">
+        <div className="rounded-2xl sm:rounded-3xl border border-brand-200 bg-white p-4 sm:p-6 md:p-8 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-4">
             <div>
               <span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-800 uppercase">
                 {activeSeason.status} Season
               </span>
-              <h2 className="mt-2 text-2xl font-bold text-gray-900">Season {activeSeason.name}</h2>
+              <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900">Season {activeSeason.name}</h2>
             </div>
           </div>
 
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+          <div className="mt-6 grid gap-3 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             <div className="rounded-2xl bg-gray-50 p-4">
               <p className="text-xs font-medium text-gray-500">Tentative Opening Date</p>
               <p className="mt-1 text-lg font-bold text-gray-900">
@@ -78,18 +78,18 @@ export default function FarmerSeason() {
 
       {/* Historical Seasons */}
       {seasons.length > 1 && (
-        <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm">
           <h3 className="text-lg font-bold text-gray-900">Season History</h3>
           <div className="mt-4 divide-y">
             {seasons.map((s) => (
-              <div key={s._id} className="flex items-center justify-between py-3 text-sm">
-                <div>
-                  <p className="font-semibold text-gray-900">{s.name}</p>
+              <div key={s._id} className="flex items-start sm:items-center justify-between gap-2.5 py-3 text-sm">
+                <div className="min-w-0">
+                  <p className="font-semibold text-gray-900 truncate">{s.name}</p>
                   <p className="text-xs text-gray-500">
                     {formatDate(s.tentativeStartDate)} &mdash; {formatDate(s.expectedEndDate)}
                   </p>
                 </div>
-                <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium capitalize text-gray-700">
+                <span className="shrink-0 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium capitalize text-gray-700">
                   {s.status}
                 </span>
               </div>

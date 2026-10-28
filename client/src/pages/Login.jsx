@@ -27,8 +27,8 @@ export default function Login() {
   };
 
   return (
-    <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-4 py-12">
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full rounded-2xl bg-white p-8 shadow-lg" noValidate>
+    <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-3.5 py-8 sm:px-4 sm:py-12">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-8 shadow-lg border border-brand-100" noValidate>
         <div className="mb-6 text-center">
           <Sprout className="mx-auto h-10 w-10 text-brand-600" />
           <h1 className="mt-2 text-2xl font-bold text-brand-900">Farmer Login</h1>

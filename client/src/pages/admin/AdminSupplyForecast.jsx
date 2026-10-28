@@ -109,24 +109,24 @@ export default function AdminSupplyForecast() {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          <div className="mt-6 grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-3">
             <div className="rounded-2xl bg-gray-50 p-4">
               <p className="text-xs font-medium text-gray-500">Lower Estimate (-12%)</p>
-              <p className="mt-2 text-2xl font-bold text-gray-700">
+              <p className="mt-2 text-xl sm:text-2xl font-bold text-gray-700">
                 {latest.lowerBoundTonnes?.toLocaleString("en-IN")} <span className="text-sm font-normal">T</span>
               </p>
             </div>
 
             <div className="rounded-2xl border border-brand-200 bg-brand-50/60 p-4">
               <p className="text-xs font-semibold uppercase text-brand-700">Predicted Supply</p>
-              <p className="mt-2 text-3xl font-extrabold text-brand-900">
+              <p className="mt-2 text-2xl sm:text-3xl font-extrabold text-brand-900">
                 {latest.predictedQuantityTonnes?.toLocaleString("en-IN")} <span className="text-base font-normal">T</span>
               </p>
             </div>
 
             <div className="rounded-2xl bg-gray-50 p-4">
               <p className="text-xs font-medium text-gray-500">Upper Estimate (+12%)</p>
-              <p className="mt-2 text-2xl font-bold text-gray-700">
+              <p className="mt-2 text-xl sm:text-2xl font-bold text-gray-700">
                 {latest.upperBoundTonnes?.toLocaleString("en-IN")} <span className="text-sm font-normal">T</span>
               </p>
             </div>
@@ -168,18 +168,18 @@ export default function AdminSupplyForecast() {
 
       {/* Chart: Expected vs Actual */}
       {chartData.length > 0 && (
-        <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm min-w-0">
           <h3 className="text-base font-bold text-gray-900 mb-4">
             Expected vs Actual Cane Supply Comparison (Tonnes)
           </h3>
-          <div className="h-72 w-full">
+          <div className="h-64 sm:h-72 w-full min-w-0">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                <XAxis dataKey="season" tick={{ fontSize: 11 }} />
-                <YAxis tick={{ fontSize: 11 }} />
+                <XAxis dataKey="season" tick={{ fontSize: 10 }} />
+                <YAxis tick={{ fontSize: 10 }} width={35} />
                 <Tooltip />
-                <Legend />
+                <Legend wrapperStyle={{ fontSize: "11px", paddingTop: "8px" }} />
                 <Bar dataKey="predicted" fill="#15803d" name="Predicted Supply (T)" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="actual" fill="#0284c7" name="Verified Actual Supply (T)" radius={[4, 4, 0, 0]} />
               </BarChart>

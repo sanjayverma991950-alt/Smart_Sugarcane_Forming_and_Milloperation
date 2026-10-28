@@ -30,7 +30,7 @@ export default function FarmerCropHistory() {
           <Link to="/farmer/crop-disease" className="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700">
             <ArrowLeft className="h-3 w-3" /> Back to Scanner
           </Link>
-          <h1 className="mt-1 text-2xl font-bold text-brand-900">Crop Disease Analysis History</h1>
+          <h1 className="mt-1 text-xl sm:text-2xl font-bold text-brand-900">Crop Disease Analysis History</h1>
         </div>
       </div>
 
@@ -41,17 +41,17 @@ export default function FarmerCropHistory() {
           action={
             <Link
               to="/farmer/crop-disease"
-              className="rounded-xl bg-brand-600 px-5 py-2.5 font-medium text-white hover:bg-brand-700"
+              className="rounded-xl bg-brand-600 px-5 py-2.5 font-semibold text-white hover:bg-brand-700 shadow-sm"
             >
               Scan a leaf now
             </Link>
           }
         />
       ) : (
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2">
           {reports.map((r) => (
             <div key={r._id} className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <div className="flex flex-wrap items-center gap-1.5">

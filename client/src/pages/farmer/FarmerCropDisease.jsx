@@ -139,32 +139,32 @@ export default function FarmerCropDisease() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-brand-900">AI Crop Disease Detection</h1>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h1 className="text-xl sm:text-2xl font-bold text-brand-900">AI Crop Disease Detection</h1>
             <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-800 border border-emerald-200">
               <Sparkles className="h-3 w-3 text-emerald-600" />
               AI Vision Active
             </span>
           </div>
-          <p className="text-sm text-gray-500 mt-0.5">
+          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
             गन्ने की पत्तियों या तने की फोटो अपलोड करें — AI विज़न रोग के लक्षण, सटीक पहचान और दवा बताएगा
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 self-start sm:self-auto">
           {/* AI Settings Button */}
           <button
             onClick={() => setShowSettings(true)}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3.5 py-2 text-sm font-semibold text-gray-700 shadow-xs hover:bg-gray-50 transition"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs sm:text-sm font-semibold text-gray-700 shadow-xs hover:bg-gray-50 transition cursor-pointer"
           >
             <Settings className="h-4 w-4 text-brand-600" /> AI Settings
           </button>
 
           <Link
             to="/farmer/crop-history"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3.5 py-2 text-sm font-semibold text-gray-700 shadow-xs hover:bg-gray-50 transition"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs sm:text-sm font-semibold text-gray-700 shadow-xs hover:bg-gray-50 transition"
           >
             <History className="h-4 w-4" /> History
           </Link>
@@ -238,11 +238,11 @@ export default function FarmerCropDisease() {
                 />
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+                  className="rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition cursor-pointer"
                 >
                   Change Photo
                 </button>
@@ -250,7 +250,7 @@ export default function FarmerCropDisease() {
                   type="button"
                   onClick={handleAnalyze}
                   disabled={loading}
-                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 text-sm font-bold text-white shadow-sm hover:bg-emerald-700 disabled:opacity-50 transition"
+                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 text-sm font-bold text-white shadow-sm hover:bg-emerald-700 disabled:opacity-50 transition cursor-pointer"
                 >
                   {loading ? (
                     <>
@@ -326,16 +326,16 @@ export default function FarmerCropDisease() {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3">
               <button
                 onClick={handleReset}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 shadow-sm transition"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 shadow-sm transition cursor-pointer"
               >
                 <RefreshCw className="h-4 w-4" /> Check Another Leaf (दूसरी पत्ती जांचें)
               </button>
               <Link
                 to="/farmer/crop-history"
-                className="rounded-xl border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+                className="inline-flex items-center justify-center rounded-xl border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
               >
                 Go to History
               </Link>
@@ -346,8 +346,8 @@ export default function FarmerCropDisease() {
 
       {/* AI Settings Modal */}
       {showSettings && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-xs">
-          <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-xl border border-gray-100 space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3.5 sm:p-4 backdrop-blur-xs">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 shadow-xl border border-gray-100 space-y-4">
             <div className="flex items-center justify-between border-b pb-3">
               <div className="flex items-center gap-2">
                 <Settings className="h-5 w-5 text-emerald-600" />

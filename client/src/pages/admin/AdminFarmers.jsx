@@ -73,17 +73,17 @@ export default function AdminFarmers() {
       {error && <ErrorMessage message={error} onRetry={loadFarmers} />}
 
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-gray-600">
+        <div className="overflow-x-auto table-responsive">
+          <table className="min-w-[700px] w-full text-left text-sm text-gray-600">
             <thead className="border-b bg-gray-50 text-xs font-semibold uppercase text-gray-500">
               <tr>
-                <th className="px-6 py-4">Farmer ID</th>
-                <th className="px-6 py-4">Name</th>
-                <th className="px-6 py-4">Mobile</th>
-                <th className="px-6 py-4">Village & District</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Registered On</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Farmer ID</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Name</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Mobile</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Village & District</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Status</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Registered On</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -96,24 +96,24 @@ export default function AdminFarmers() {
               ) : (
                 farmers.map((f) => (
                   <tr key={f._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-mono font-semibold text-brand-800">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-mono font-semibold text-brand-800 whitespace-nowrap">
                       {f.farmerId || "—"}
                     </td>
-                    <td className="px-6 py-4 font-semibold text-gray-900">{f.name}</td>
-                    <td className="px-6 py-4">{f.mobile}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-semibold text-gray-900 whitespace-nowrap">{f.name}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">{f.mobile}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       {f.village}, {f.district}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 capitalize">
                         {f.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-xs text-gray-400">{formatDate(f.createdAt)}</td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs text-gray-400 whitespace-nowrap">{formatDate(f.createdAt)}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-right whitespace-nowrap">
                       <button
                         onClick={() => viewDetails(f)}
-                        className="inline-flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100"
+                        className="inline-flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 cursor-pointer"
                       >
                         <Eye className="h-3.5 w-3.5" /> Details
                       </button>
@@ -128,14 +128,14 @@ export default function AdminFarmers() {
 
       {/* Farmer Details Modal */}
       {selectedFarmer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3.5 sm:p-4">
+          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 shadow-xl border border-gray-100">
             <div className="flex items-center justify-between border-b pb-4">
               <div>
                 <span className="font-mono text-xs text-brand-700 font-bold">{selectedFarmer.farmerId}</span>
-                <h2 className="text-xl font-bold text-gray-900">{selectedFarmer.name}</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900">{selectedFarmer.name}</h2>
               </div>
-              <button onClick={() => setSelectedFarmer(null)} className="text-gray-400 hover:text-gray-600">
+              <button onClick={() => setSelectedFarmer(null)} className="rounded-lg p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -144,7 +144,7 @@ export default function AdminFarmers() {
               <div className="py-12"><Loader /></div>
             ) : farmerDetails ? (
               <div className="mt-4 space-y-6 text-sm">
-                <div className="grid grid-cols-2 gap-4 rounded-2xl bg-gray-50 p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 rounded-2xl bg-gray-50 p-4">
                   <div>
                     <span className="text-xs text-gray-400">Mobile:</span>
                     <p className="font-semibold text-gray-800">{selectedFarmer.mobile}</p>

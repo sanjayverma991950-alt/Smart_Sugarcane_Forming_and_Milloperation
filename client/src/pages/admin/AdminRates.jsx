@@ -83,15 +83,15 @@ export default function AdminRates() {
       {error && <ErrorMessage message={error} onRetry={loadData} />}
 
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-gray-600">
+        <div className="overflow-x-auto table-responsive">
+          <table className="min-w-[650px] w-full text-left text-sm text-gray-600">
             <thead className="border-b bg-gray-50 text-xs font-semibold uppercase text-gray-500">
               <tr>
-                <th className="px-6 py-4">Season</th>
-                <th className="px-6 py-4">Cane Variety / Category</th>
-                <th className="px-6 py-4">Rate Per Tonne (₹)</th>
-                <th className="px-6 py-4">Effective Date</th>
-                <th className="px-6 py-4">Status</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Season</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Cane Variety / Category</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Rate Per Tonne (₹)</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Effective Date</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -104,13 +104,13 @@ export default function AdminRates() {
               ) : (
                 rates.map((r) => (
                   <tr key={r._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-bold text-gray-900">{r.season?.name}</td>
-                    <td className="px-6 py-4">{r.variety}</td>
-                    <td className="px-6 py-4 font-extrabold text-emerald-700">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-bold text-gray-900 whitespace-nowrap">{r.season?.name}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">{r.variety}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-extrabold text-emerald-700 whitespace-nowrap">
                       ₹{r.ratePerTonne.toLocaleString("en-IN")} / Tonne
                     </td>
-                    <td className="px-6 py-4 text-xs text-gray-400">{formatDate(r.effectiveDate)}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs text-gray-400 whitespace-nowrap">{formatDate(r.effectiveDate)}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <span
                         className={`rounded-full px-2.5 py-0.5 text-xs font-semibold uppercase ${
                           r.status === "active"
@@ -131,11 +131,11 @@ export default function AdminRates() {
 
       {/* Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3.5 sm:p-4">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 shadow-xl border border-gray-100">
             <div className="flex items-center justify-between border-b pb-4">
-              <h2 className="text-xl font-bold text-gray-900">Set Procurement Rate</h2>
-              <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-gray-600">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Set Procurement Rate</h2>
+              <button onClick={() => setModalOpen(false)} className="rounded-lg p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -185,11 +185,11 @@ export default function AdminRates() {
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-3">
+              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="rounded-xl border px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  className="rounded-xl border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
                   Cancel
                 </button>

@@ -62,17 +62,17 @@ export default function FarmerNotifications() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-brand-900">Notifications</h1>
-          <p className="text-sm text-gray-500">
+          <h1 className="text-xl sm:text-2xl font-bold text-brand-900">Notifications</h1>
+          <p className="text-xs sm:text-sm text-gray-500">
             {unreadCount > 0 ? `${unreadCount} unread messages` : "All notifications read"}
           </p>
         </div>
         {unreadCount > 0 && (
           <button
             onClick={markAllRead}
-            className="inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-semibold text-brand-700 hover:bg-brand-50"
+            className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-brand-200 bg-white px-3 py-2 text-xs font-semibold text-brand-700 hover:bg-brand-50 shadow-2xs self-start sm:self-auto cursor-pointer"
           >
             <CheckCheck className="h-4 w-4" /> Mark all read
           </button>
@@ -85,30 +85,30 @@ export default function FarmerNotifications() {
           text="You will receive alerts here when tickets are approved, weighments recorded, or payments disbursed."
         />
       ) : (
-        <div className="divide-y rounded-2xl border border-gray-100 bg-white shadow-sm">
+        <div className="divide-y rounded-2xl sm:rounded-3xl border border-gray-100 bg-white shadow-sm overflow-hidden">
           {notifications.map((n) => {
             const Icon = iconMap[n.type] || Bell;
             return (
               <div
                 key={n._id}
                 onClick={() => !n.isRead && markRead(n._id)}
-                className={`flex items-start gap-4 p-5 transition cursor-pointer ${
+                className={`flex items-start gap-3 sm:gap-4 p-3.5 sm:p-5 transition cursor-pointer ${
                   n.isRead ? "bg-white hover:bg-gray-50" : "bg-brand-50/40 hover:bg-brand-50/70"
                 }`}
               >
                 <div
-                  className={`rounded-xl p-2.5 shrink-0 ${
+                  className={`rounded-xl p-2 sm:p-2.5 shrink-0 ${
                     n.isRead ? "bg-gray-100 text-gray-600" : "bg-brand-100 text-brand-700 font-bold"
                   }`}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className={`text-sm ${n.isRead ? "font-semibold text-gray-800" : "font-bold text-brand-950"}`}>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <h3 className={`text-xs sm:text-sm ${n.isRead ? "font-semibold text-gray-800" : "font-bold text-brand-950"}`}>
                       {n.title}
                     </h3>
-                    <span className="text-[11px] text-gray-400 shrink-0">{formatDate(n.createdAt)}</span>
+                    <span className="text-[10px] sm:text-[11px] text-gray-400 shrink-0">{formatDate(n.createdAt)}</span>
                   </div>
                   <p className="mt-1 text-xs text-gray-600 leading-relaxed">{n.message}</p>
                 </div>

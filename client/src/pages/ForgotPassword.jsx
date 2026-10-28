@@ -77,8 +77,8 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-4 py-12">
-      <div className="w-full rounded-2xl bg-white p-8 shadow-lg">
+    <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-3.5 py-8 sm:px-4 sm:py-12">
+      <div className="w-full rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-8 shadow-lg border border-brand-100">
         <div className="mb-6 text-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
             <KeyRound className="h-6 w-6" />

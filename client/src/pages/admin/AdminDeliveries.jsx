@@ -126,18 +126,18 @@ export default function AdminDeliveries() {
       {error && <ErrorMessage message={error} onRetry={loadData} />}
 
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-gray-600">
+        <div className="overflow-x-auto table-responsive">
+          <table className="min-w-[700px] w-full text-left text-sm text-gray-600">
             <thead className="border-b bg-gray-50 text-xs font-semibold uppercase text-gray-500">
               <tr>
-                <th className="px-6 py-4">Receipt #</th>
-                <th className="px-6 py-4">Farmer</th>
-                <th className="px-6 py-4">Vehicle</th>
-                <th className="px-6 py-4">Gross & Tare</th>
-                <th className="px-6 py-4">Net Accepted</th>
-                <th className="px-6 py-4">Rate</th>
-                <th className="px-6 py-4">Amount Payable</th>
-                <th className="px-6 py-4">Date</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Receipt #</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Farmer</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Vehicle</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Gross & Tare</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Net Accepted</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Rate</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Amount Payable</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Date</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -150,24 +150,24 @@ export default function AdminDeliveries() {
               ) : (
                 deliveries.map((d) => (
                   <tr key={d._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-bold text-gray-900">{d.receiptNumber}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-bold text-gray-900 whitespace-nowrap">{d.receiptNumber}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <div className="font-semibold text-gray-800">{d.farmer?.name}</div>
                       <div className="text-xs text-gray-400">{d.farmer?.farmerId}</div>
                     </td>
-                    <td className="px-6 py-4 font-mono text-xs">{d.vehicleNumber}</td>
-                    <td className="px-6 py-4 text-xs">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-mono text-xs whitespace-nowrap">{d.vehicleNumber}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs whitespace-nowrap">
                       <div>G: {d.grossWeightTonnes} T</div>
                       <div className="text-gray-400">T: {d.tareWeightTonnes} T</div>
                     </td>
-                    <td className="px-6 py-4 font-bold text-gray-900">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-bold text-gray-900 whitespace-nowrap">
                       {d.acceptedQuantityTonnes} Tonnes
                     </td>
-                    <td className="px-6 py-4">₹{d.ratePerTonne}</td>
-                    <td className="px-6 py-4 font-bold text-emerald-700">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">₹{d.ratePerTonne}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-bold text-emerald-700 whitespace-nowrap">
                       ₹{d.totalAmount.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-6 py-4 text-xs text-gray-400">{formatDate(d.deliveryDate)}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs text-gray-400 whitespace-nowrap">{formatDate(d.deliveryDate)}</td>
                   </tr>
                 ))
               )}
@@ -178,11 +178,11 @@ export default function AdminDeliveries() {
 
       {/* Record Weighment Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-lg rounded-3xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3.5 sm:p-4">
+          <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 shadow-xl border border-gray-100">
             <div className="flex items-center justify-between border-b pb-4">
-              <h2 className="text-xl font-bold text-gray-900">Record Cane Delivery & Weighment</h2>
-              <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-gray-600">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Record Cane Delivery & Weighment</h2>
+              <button onClick={() => setModalOpen(false)} className="rounded-lg p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -290,11 +290,11 @@ export default function AdminDeliveries() {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 pt-3">
+              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="rounded-xl border px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  className="rounded-xl border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
                   Cancel
                 </button>

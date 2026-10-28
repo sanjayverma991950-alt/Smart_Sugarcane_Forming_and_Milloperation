@@ -93,17 +93,17 @@ export default function AdminTickets() {
       {error && <ErrorMessage message={error} onRetry={loadTickets} />}
 
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-gray-600">
+        <div className="overflow-x-auto table-responsive">
+          <table className="min-w-[720px] w-full text-left text-sm text-gray-600">
             <thead className="border-b bg-gray-50 text-xs font-semibold uppercase text-gray-500">
               <tr>
-                <th className="px-6 py-4">Ticket Number</th>
-                <th className="px-6 py-4">Farmer Details</th>
-                <th className="px-6 py-4">Field</th>
-                <th className="px-6 py-4">Allocated / Supplied</th>
-                <th className="px-6 py-4">Slot</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Review Action</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Ticket Number</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Farmer Details</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Field</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Allocated / Supplied</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Slot</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Status</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 text-right whitespace-nowrap">Review Action</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -116,27 +116,27 @@ export default function AdminTickets() {
               ) : (
                 tickets.map((t) => (
                   <tr key={t._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-bold text-gray-900">{t.ticketNumber}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-bold text-gray-900 whitespace-nowrap">{t.ticketNumber}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <div className="font-semibold text-gray-800">{t.farmer?.name}</div>
                       <div className="text-xs text-gray-400 font-mono">
                         {t.farmer?.farmerId} &bull; {t.farmer?.mobile}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-xs">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs whitespace-nowrap">
                       {t.field?.name || "General Plot"}
                     </td>
-                    <td className="px-6 py-4 font-semibold text-gray-900">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-semibold text-gray-900 whitespace-nowrap">
                       {t.allocatedQuantityTonnes} T
                       <div className="text-xs font-normal text-gray-400">
                         Supplied: {t.suppliedQuantityTonnes} T
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-xs text-gray-500">{t.deliverySlot}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs text-gray-500 whitespace-nowrap">{t.deliverySlot}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <StatusBadge status={t.status} />
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-right whitespace-nowrap">
                       {t.status === "Pending Review" ? (
                         <button
                           onClick={() => {
@@ -144,7 +144,7 @@ export default function AdminTickets() {
                             setReviewAction("Approved");
                             setReviewReason("");
                           }}
-                          className="rounded-xl bg-brand-700 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-brand-800"
+                          className="rounded-xl bg-brand-700 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-brand-800 cursor-pointer"
                         >
                           Review Request
                         </button>
@@ -153,7 +153,7 @@ export default function AdminTickets() {
                           {t.status === "Approved" && (
                             <button
                               onClick={() => handleStatusChange(t._id, "Completed")}
-                              className="rounded-lg border px-2.5 py-1 text-xs text-gray-600 hover:bg-gray-100"
+                              className="rounded-lg border px-2.5 py-1 text-xs text-gray-600 hover:bg-gray-100 cursor-pointer"
                             >
                               Mark Completed
                             </button>
@@ -164,7 +164,7 @@ export default function AdminTickets() {
                               setReviewAction(t.status === "Approved" ? "Rejected" : "Approved");
                               setReviewReason(t.reviewReason || "");
                             }}
-                            className="rounded-lg border px-2.5 py-1 text-xs text-gray-600 hover:bg-gray-100"
+                            className="rounded-lg border px-2.5 py-1 text-xs text-gray-600 hover:bg-gray-100 cursor-pointer"
                           >
                             Edit
                           </button>
@@ -181,8 +181,8 @@ export default function AdminTickets() {
 
       {/* Review Modal */}
       {reviewModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3.5 sm:p-4">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 shadow-xl border border-gray-100">
             <div className="flex items-center justify-between border-b pb-4">
               <div>
                 <span className="font-mono text-xs font-bold text-brand-700">{reviewModal.ticketNumber}</span>
@@ -246,11 +246,11 @@ export default function AdminTickets() {
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-3">
+              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setReviewModal(null)}
-                  className="rounded-xl border px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  className="rounded-xl border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
                   Cancel
                 </button>

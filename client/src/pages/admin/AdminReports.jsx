@@ -36,10 +36,10 @@ export default function AdminReports() {
       </div>
 
       {/* Procurement Trend */}
-      <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-bold text-gray-900 mb-1">Daily Cane Arrivals & Procurement Value</h2>
+      <div className="rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm min-w-0">
+        <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Daily Cane Arrivals & Procurement Value</h2>
         <p className="text-xs text-gray-400 mb-4">Volume (Tonnes) and Payable Amount (₹) recorded at weighbridge</p>
-        <div className="h-72 w-full">
+        <div className="h-64 sm:h-72 w-full min-w-0">
           {procurementTrend.length === 0 ? (
             <p className="flex h-full items-center justify-center text-sm text-gray-400">
               No procurement trends recorded yet.
@@ -48,11 +48,11 @@ export default function AdminReports() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={procurementTrend}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-                <YAxis yAxisId="left" orientation="left" tick={{ fontSize: 11 }} />
-                <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 11 }} />
+                <XAxis dataKey="date" tick={{ fontSize: 10 }} />
+                <YAxis yAxisId="left" orientation="left" tick={{ fontSize: 10 }} width={35} />
+                <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 10 }} width={45} />
                 <Tooltip />
-                <Legend />
+                <Legend wrapperStyle={{ fontSize: "11px", paddingTop: "8px" }} />
                 <Bar yAxisId="left" dataKey="tonnes" fill="#15803d" name="Sugarcane (Tonnes)" radius={[4, 4, 0, 0]} />
                 <Bar yAxisId="right" dataKey="amount" fill="#0284c7" name="Amount (₹)" radius={[4, 4, 0, 0]} />
               </BarChart>
@@ -61,12 +61,12 @@ export default function AdminReports() {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
         {/* Variety Breakdown */}
-        <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-bold text-gray-900 mb-1">Cultivated Variety Distribution</h2>
+        <div className="rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm min-w-0">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Cultivated Variety Distribution</h2>
           <p className="text-xs text-gray-400 mb-4">Acreage breakdown across farmer plots</p>
-          <div className="h-64 w-full">
+          <div className="h-64 w-full min-w-0">
             {varietyBreakdown.length === 0 ? (
               <p className="flex h-full items-center justify-center text-sm text-gray-400">
                 No variety data available.
@@ -75,8 +75,8 @@ export default function AdminReports() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={varietyBreakdown} layout="vertical">
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f0f0f0" />
-                  <XAxis type="number" tick={{ fontSize: 11 }} />
-                  <YAxis dataKey="variety" type="category" tick={{ fontSize: 11 }} width={90} />
+                  <XAxis type="number" tick={{ fontSize: 10 }} />
+                  <YAxis dataKey="variety" type="category" tick={{ fontSize: 10 }} width={75} />
                   <Tooltip />
                   <Bar dataKey="area" fill="#16a34a" name="Area (Acres)" radius={[0, 4, 4, 0]} />
                 </BarChart>
@@ -86,10 +86,10 @@ export default function AdminReports() {
         </div>
 
         {/* Payment Status Breakdown */}
-        <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-bold text-gray-900 mb-1">Farmer Payment Accounts Status</h2>
+        <div className="rounded-2xl sm:rounded-3xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Farmer Payment Accounts Status</h2>
           <p className="text-xs text-gray-400 mb-4">Disbursement progress and pending liability categories</p>
-          <div className="mt-4 space-y-3">
+          <div className="mt-4 space-y-2.5 sm:space-y-3">
             {paymentStatusBreakdown.length === 0 ? (
               <p className="py-12 text-center text-sm text-gray-400">No payment records yet.</p>
             ) : (

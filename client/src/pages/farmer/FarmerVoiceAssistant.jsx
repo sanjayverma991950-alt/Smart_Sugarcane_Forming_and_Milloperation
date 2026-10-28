@@ -116,27 +116,27 @@ export default function FarmerVoiceAssistant() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-brand-900">AI Voice Assistant (बोलकर पूछें)</h1>
-          <p className="text-sm text-gray-500">
+          <h1 className="text-xl sm:text-2xl font-bold text-brand-900">AI Voice Assistant (बोलकर पूछें)</h1>
+          <p className="text-xs sm:text-sm text-gray-500">
             Ask about your tickets, payments, weather, and season dates in Hindi or English
           </p>
         </div>
 
         {/* Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 self-start sm:self-auto">
           {/* Language Switch */}
           <div className="flex rounded-xl bg-gray-100 p-1 text-xs font-semibold">
             <button
               onClick={() => setLanguage("hi")}
-              className={`rounded-lg px-3 py-1.5 transition ${language === "hi" ? "bg-white text-brand-700 shadow-sm" : "text-gray-600"}`}
+              className={`rounded-lg px-2.5 sm:px-3 py-1.5 transition cursor-pointer ${language === "hi" ? "bg-white text-brand-700 shadow-sm" : "text-gray-600"}`}
             >
               हिन्दी (Hindi)
             </button>
             <button
               onClick={() => setLanguage("en")}
-              className={`rounded-lg px-3 py-1.5 transition ${language === "en" ? "bg-white text-brand-700 shadow-sm" : "text-gray-600"}`}
+              className={`rounded-lg px-2.5 sm:px-3 py-1.5 transition cursor-pointer ${language === "en" ? "bg-white text-brand-700 shadow-sm" : "text-gray-600"}`}
             >
               English
             </button>
@@ -146,7 +146,7 @@ export default function FarmerVoiceAssistant() {
           <button
             onClick={() => setAutoSpeak(!autoSpeak)}
             title={autoSpeak ? "Voice output enabled" : "Voice output muted"}
-            className={`rounded-xl border p-2 transition ${autoSpeak ? "border-brand-300 bg-brand-50 text-brand-700" : "border-gray-200 text-gray-400"}`}
+            className={`rounded-xl border p-2 transition cursor-pointer ${autoSpeak ? "border-brand-300 bg-brand-50 text-brand-700" : "border-gray-200 text-gray-400"}`}
           >
             {autoSpeak ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
           </button>
@@ -165,21 +165,21 @@ export default function FarmerVoiceAssistant() {
       )}
 
       {/* Voice Mic Hero Card */}
-      <div className="flex flex-col items-center justify-center rounded-3xl border border-brand-100 bg-gradient-to-b from-brand-50/50 via-white to-white p-8 text-center shadow-sm">
+      <div className="flex flex-col items-center justify-center rounded-2xl sm:rounded-3xl border border-brand-100 bg-gradient-to-b from-brand-50/50 via-white to-white p-5 sm:p-8 text-center shadow-sm">
         {/* Pulsing Mic Button */}
         <button
           onClick={toggleListening}
           disabled={!speechSupported}
-          className={`relative flex h-28 w-28 items-center justify-center rounded-full transition-all duration-300 shadow-lg ${
+          className={`relative flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-full transition-all duration-300 shadow-lg cursor-pointer ${
             isListening
               ? "bg-red-500 text-white ring-8 ring-red-200 animate-pulse scale-105"
               : "bg-brand-600 text-white hover:bg-brand-700 hover:scale-105"
           } disabled:opacity-50`}
         >
-          {isListening ? <Mic className="h-12 w-12" /> : <Mic className="h-12 w-12" />}
+          {isListening ? <Mic className="h-10 w-10 sm:h-12 sm:w-12" /> : <Mic className="h-10 w-10 sm:h-12 sm:w-12" />}
         </button>
 
-        <p className="mt-4 font-semibold text-gray-800">
+        <p className="mt-4 font-semibold text-gray-800 text-sm sm:text-base">
           {isListening
             ? "सुन रहा हूँ... बोलिए (Listening...)"
             : "माइक दबाकर बोलें (Tap mic to speak)"}
@@ -189,7 +189,7 @@ export default function FarmerVoiceAssistant() {
         </p>
 
         {/* Quick Voice Chips */}
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-5 sm:mt-6 flex flex-wrap justify-center gap-1.5 sm:gap-2">
           {sampleVoicePrompts.map((p, i) => (
             <button
               key={i}
@@ -197,7 +197,7 @@ export default function FarmerVoiceAssistant() {
                 setSpokenText(p.query);
                 handleAsk(p.query);
               }}
-              className="rounded-xl border border-brand-200 bg-white px-3 py-1.5 text-xs font-medium text-brand-800 shadow-xs hover:bg-brand-50"
+              className="rounded-xl border border-brand-200 bg-white px-2.5 sm:px-3 py-1.5 text-xs font-medium text-brand-800 shadow-xs hover:bg-brand-50 cursor-pointer"
             >
               &ldquo;{p.label}&rdquo;
             </button>
@@ -206,22 +206,22 @@ export default function FarmerVoiceAssistant() {
       </div>
 
       {/* Transcript & Input Bar */}
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+      <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm">
         <label className="block text-xs font-semibold uppercase tracking-wider text-gray-500">
           Recognized Voice / Typed Text
         </label>
-        <div className="mt-2 flex gap-3">
+        <div className="mt-2 flex flex-col sm:flex-row gap-2 sm:gap-3">
           <input
             type="text"
             value={spokenText}
             onChange={(e) => setSpokenText(e.target.value)}
             placeholder="आप जो बोलेंगे वह यहां दिखेगा या सीधे टाइप करें..."
-            className="flex-1 rounded-xl border px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
+            className="flex-1 rounded-xl border px-3.5 sm:px-4 py-2.5 sm:py-3 text-sm focus:border-brand-500 focus:outline-none"
           />
           <button
             onClick={() => handleAsk()}
             disabled={!spokenText.trim() || loading}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-600 px-5 py-2.5 sm:py-3 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-50 cursor-pointer"
           >
             <Send className="h-4 w-4" /> Ask
           </button>

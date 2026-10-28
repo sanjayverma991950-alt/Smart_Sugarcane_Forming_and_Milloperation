@@ -131,14 +131,14 @@ export default function FieldForm() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-2xl font-bold text-brand-900">{isEdit ? "Edit Field" : "Add Field"}</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-brand-900">{isEdit ? "Edit Field" : "Add Field"}</h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-6 rounded-2xl bg-white p-6 shadow-sm">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl bg-white p-4 sm:p-6 shadow-sm border border-brand-100">
         {serverError && (
           <p role="alert" className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{serverError}</p>
         )}
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
           <Field label="Field name or ID" id="name" error={errors.name}>
             <input id="name" className={inputCls} {...register("name", { required: "Field name is required" })} />
           </Field>
@@ -258,11 +258,11 @@ export default function FieldForm() {
           <textarea id="notes" rows={3} className={inputCls} {...register("notes", { maxLength: { value: 500, message: "Maximum 500 characters" } })} />
         </Field>
 
-        <div className="mt-6 flex gap-3">
-          <button disabled={isSubmitting} className="rounded-lg bg-brand-600 px-6 py-3 font-medium text-white hover:bg-brand-700 disabled:opacity-60">
+        <div className="mt-6 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+          <button disabled={isSubmitting} className="rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white hover:bg-brand-700 disabled:opacity-60 cursor-pointer">
             {isSubmitting ? "Saving..." : isEdit ? "Save changes" : "Add field"}
           </button>
-          <Link to="/farmer/fields" className="rounded-lg border px-6 py-3 hover:bg-gray-50">Cancel</Link>
+          <Link to="/farmer/fields" className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-6 py-3 font-medium text-gray-700 hover:bg-gray-50">Cancel</Link>
         </div>
       </form>
     </div>

@@ -70,18 +70,18 @@ export default function AdminPayments() {
       {error && <ErrorMessage message={error} onRetry={loadPayments} />}
 
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-gray-600">
+        <div className="overflow-x-auto table-responsive">
+          <table className="min-w-[700px] w-full text-left text-sm text-gray-600">
             <thead className="border-b bg-gray-50 text-xs font-semibold uppercase text-gray-500">
               <tr>
-                <th className="px-6 py-4">Payment #</th>
-                <th className="px-6 py-4">Farmer Details</th>
-                <th className="px-6 py-4">Season</th>
-                <th className="px-6 py-4">Net Payable</th>
-                <th className="px-6 py-4">Amount Paid</th>
-                <th className="px-6 py-4">Balance Due</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Payment #</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Farmer Details</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Season</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Net Payable</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Amount Paid</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Balance Due</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Status</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -94,25 +94,25 @@ export default function AdminPayments() {
               ) : (
                 payments.map((p) => (
                   <tr key={p._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-bold text-gray-900">{p.paymentNumber}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-bold text-gray-900 whitespace-nowrap">{p.paymentNumber}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <div className="font-semibold text-gray-800">{p.farmer?.name}</div>
                       <div className="text-xs text-gray-400">{p.farmer?.mobile} &bull; {p.farmer?.farmerId}</div>
                     </td>
-                    <td className="px-6 py-4 text-xs">{p.season?.name}</td>
-                    <td className="px-6 py-4 font-semibold text-gray-900">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs whitespace-nowrap">{p.season?.name}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-semibold text-gray-900 whitespace-nowrap">
                       ₹{p.netPayable.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-6 py-4 font-bold text-emerald-600">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-bold text-emerald-600 whitespace-nowrap">
                       ₹{p.amountPaid.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-6 py-4 font-bold text-amber-600">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-bold text-amber-600 whitespace-nowrap">
                       ₹{p.balanceDue.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <StatusBadge status={p.status} />
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-right whitespace-nowrap">
                       {p.balanceDue > 0 ? (
                         <button
                           onClick={() => {
@@ -121,7 +121,7 @@ export default function AdminPayments() {
                             setPaymentReference(`NEFT-${Date.now().toString().slice(-6)}`);
                             setFormError("");
                           }}
-                          className="rounded-xl bg-brand-700 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-brand-800"
+                          className="rounded-xl bg-brand-700 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-brand-800 cursor-pointer"
                         >
                           Disburse
                         </button>
@@ -139,8 +139,8 @@ export default function AdminPayments() {
 
       {/* Disburse Modal */}
       {disburseModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3.5 sm:p-4">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 shadow-xl border border-gray-100">
             <div className="flex items-center justify-between border-b pb-4">
               <div>
                 <span className="font-mono text-xs font-bold text-brand-700">{disburseModal.paymentNumber}</span>
@@ -201,18 +201,18 @@ export default function AdminPayments() {
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-3">
+              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setDisburseModal(null)}
-                  className="rounded-xl border px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  className="rounded-xl border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-50"
+                  className="rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-50 cursor-pointer"
                 >
                   {submitting ? "Processing..." : "Record Payment Disbursement"}
                 </button>

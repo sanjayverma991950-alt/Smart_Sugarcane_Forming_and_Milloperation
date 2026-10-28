@@ -247,18 +247,18 @@ export default function FarmerAssistant() {
   };
 
   return (
-    <div className="mx-auto flex h-[calc(100vh-8.5rem)] max-w-4xl flex-col rounded-3xl border border-brand-100 bg-white shadow-sm overflow-hidden">
+    <div className="mx-auto flex h-[calc(100vh-7.5rem)] sm:h-[calc(100vh-8.5rem)] max-w-4xl flex-col rounded-2xl sm:rounded-3xl border border-brand-100 bg-white shadow-sm overflow-hidden">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between border-b border-gray-100 bg-white px-6 py-3.5 gap-3">
-        <div className="flex items-center gap-3">
-          <div className="rounded-2xl bg-gradient-to-tr from-brand-700 to-brand-500 p-2.5 text-white shadow-sm">
-            <Bot className="h-6 w-6" />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-100 bg-white px-4 py-3 sm:px-6 sm:py-3.5 gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="rounded-2xl bg-gradient-to-tr from-brand-700 to-brand-500 p-2 sm:p-2.5 text-white shadow-sm shrink-0">
+            <Bot className="h-5 w-5 sm:h-6 sm:w-6" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h1 className="font-bold text-gray-900 text-base">AgroCane AI Advisor</h1>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="font-bold text-gray-900 text-sm sm:text-base">AgroCane AI Advisor</h1>
               <span
-                className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ${
+                className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] sm:text-[11px] font-medium ${
                   aiConfig.hasApiKey
                     ? "bg-purple-50 text-purple-700 border border-purple-200"
                     : "bg-emerald-50 text-emerald-700 border border-emerald-200"
@@ -269,18 +269,18 @@ export default function FarmerAssistant() {
               </span>
             </div>
             <p className="text-xs text-gray-500">
-              गन्ना कृषि वैज्ञानिक व मिल सहायक (Ask any question in Hindi or English)
+              गन्ना कृषि वैज्ञानिक व मिल सहायक (Ask in Hindi or English)
             </p>
           </div>
         </div>
 
         {/* Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 self-start sm:self-auto">
           {/* Language Switch */}
           <div className="flex items-center rounded-xl bg-gray-100 p-1 text-xs font-semibold">
             <button
               onClick={() => setLanguage("hi")}
-              className={`rounded-lg px-2.5 py-1 transition ${
+              className={`rounded-lg px-2.5 py-1 transition cursor-pointer ${
                 language === "hi"
                   ? "bg-white text-brand-700 shadow-xs"
                   : "text-gray-600 hover:text-gray-900"
@@ -290,7 +290,7 @@ export default function FarmerAssistant() {
             </button>
             <button
               onClick={() => setLanguage("en")}
-              className={`rounded-lg px-2.5 py-1 transition ${
+              className={`rounded-lg px-2.5 py-1 transition cursor-pointer ${
                 language === "en"
                   ? "bg-white text-brand-700 shadow-xs"
                   : "text-gray-600 hover:text-gray-900"
@@ -304,7 +304,7 @@ export default function FarmerAssistant() {
           <button
             onClick={() => setShowSettings(true)}
             title="AI Engine / Gemini API Settings"
-            className="flex items-center gap-1 rounded-xl border border-gray-200 p-2 text-xs font-medium text-gray-600 hover:bg-gray-50 transition"
+            className="flex items-center gap-1 rounded-xl border border-gray-200 p-2 text-xs font-medium text-gray-600 hover:bg-gray-50 transition cursor-pointer"
           >
             <Settings className="h-4 w-4" />
           </button>
@@ -313,7 +313,7 @@ export default function FarmerAssistant() {
           <button
             onClick={handleClearChat}
             title="Clear Chat History"
-            className="flex items-center gap-1 rounded-xl border border-gray-200 p-2 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-red-600 transition"
+            className="flex items-center gap-1 rounded-xl border border-gray-200 p-2 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-red-600 transition cursor-pointer"
           >
             <Trash2 className="h-4 w-4" />
           </button>
@@ -321,7 +321,7 @@ export default function FarmerAssistant() {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 space-y-4 overflow-y-auto p-6 bg-gradient-to-b from-gray-50/40 via-white to-white">
+      <div className="flex-1 space-y-4 overflow-y-auto p-3.5 sm:p-6 bg-gradient-to-b from-gray-50/40 via-white to-white">
         {messages.map((m, idx) => (
           <div
             key={idx}
@@ -380,19 +380,19 @@ export default function FarmerAssistant() {
       </div>
 
       {/* Suggested Topics Bar */}
-      <div className="border-t border-gray-100 bg-gray-50/70 px-5 py-2.5">
+      <div className="border-t border-gray-100 bg-gray-50/70 px-3.5 sm:px-5 py-2 sm:py-2.5">
         <div className="flex items-center justify-between mb-1.5">
           <p className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
             <Sparkles className="h-3 w-3 text-amber-500" /> तुरंत पूछें (Quick Suggestions)
           </p>
-          <span className="text-[11px] text-gray-400">या सीधे नीचे अपना प्रश्न टाइप करें 👇</span>
+          <span className="hidden sm:inline text-[11px] text-gray-400">या सीधे नीचे अपना प्रश्न टाइप करें 👇</span>
         </div>
         <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
           {QUICK_TOPICS.map((s, i) => (
             <button
               key={i}
               onClick={() => handleSend(language === "hi" ? s.hi : s.en)}
-              className="shrink-0 rounded-lg border border-gray-200 bg-white px-2.5 py-1 text-xs text-gray-700 hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800 transition"
+              className="shrink-0 rounded-lg border border-gray-200 bg-white px-2.5 py-1 text-xs text-gray-700 hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800 transition cursor-pointer"
             >
               {s.label}
             </button>
@@ -406,7 +406,7 @@ export default function FarmerAssistant() {
           e.preventDefault();
           handleSend();
         }}
-        className="flex items-center gap-2 border-t border-gray-100 p-3.5 bg-white"
+        className="flex items-center gap-2 border-t border-gray-100 p-2.5 sm:p-3.5 bg-white"
       >
         <input
           type="text"
@@ -414,24 +414,25 @@ export default function FarmerAssistant() {
           onChange={(e) => setInput(e.target.value)}
           placeholder={
             language === "hi"
-              ? "गन्ना फसल, खाद, रोग, दवा, किस्में, पर्ची या भुगतान से जुड़ा कोई भी सवाल पूछें..."
-              : "Ask any question about sugarcane, diseases, fertilizer, varieties, tickets, or payments..."
+              ? "गन्ना फसल, खाद, रोग, दवा, पर्ची या भुगतान का सवाल पूछें..."
+              : "Ask any question about sugarcane, diseases, fertilizer, tickets..."
           }
-          className="flex-1 rounded-xl border border-gray-200 px-4 py-3 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100"
+          className="flex-1 min-w-0 rounded-xl border border-gray-200 px-3.5 sm:px-4 py-2.5 sm:py-3 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100"
         />
         <button
           type="submit"
           disabled={!input.trim() || loading}
-          className="inline-flex items-center gap-1.5 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 disabled:opacity-50 transition"
+          className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-brand-600 px-3.5 sm:px-5 py-2.5 sm:py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 disabled:opacity-50 transition cursor-pointer"
         >
-          <Send className="h-4 w-4" /> भेजें (Send)
+          <Send className="h-4 w-4" />
+          <span className="hidden sm:inline">भेजें (Send)</span>
         </button>
       </form>
 
       {/* AI Settings Modal */}
       {showSettings && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-xs">
-          <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-xl border border-gray-100 space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3.5 sm:p-4 backdrop-blur-xs">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 shadow-xl border border-gray-100 space-y-4">
             <div className="flex items-center justify-between border-b pb-3">
               <div className="flex items-center gap-2">
                 <Settings className="h-5 w-5 text-brand-600" />

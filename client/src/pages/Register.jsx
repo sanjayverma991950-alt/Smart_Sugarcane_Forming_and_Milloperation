@@ -44,8 +44,8 @@ export default function Register() {
   };
 
   return (
-    <div className="mx-auto max-w-xl px-4 py-12">
-      <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl bg-white p-8 shadow-lg" noValidate>
+    <div className="mx-auto max-w-xl px-3.5 py-8 sm:px-4 sm:py-12">
+      <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-8 shadow-lg border border-brand-100" noValidate>
         <div className="mb-6 text-center">
           <Sprout className="mx-auto h-10 w-10 text-brand-600" />
           <h1 className="mt-2 text-2xl font-bold text-brand-900">Farmer Registration</h1>
@@ -88,8 +88,6 @@ export default function Register() {
           <Field label="State" id="state" error={errors.state}>
             <input id="state" className={inputCls} defaultValue="Uttar Pradesh" {...register("state", { required: "State is required" })} />
           </Field>
-
-          <div />
 
           <Field label="Password" id="password" error={errors.password}>
             <div className="relative mt-1">

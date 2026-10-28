@@ -54,14 +54,23 @@ export default function DashboardLayout() {
     <div className="flex min-h-screen">
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 transform overflow-y-auto bg-brand-900 text-brand-100 transition-transform md:static md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 transform overflow-y-auto overscroll-contain bg-brand-900 text-brand-100 shadow-2xl transition-transform duration-200 ease-in-out lg:static lg:translate-x-0 lg:shadow-none ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center gap-2 px-5 py-5 text-lg font-bold text-white">
-          <Sprout className="h-6 w-6" /> AgroCane 360
+        <div className="flex items-center justify-between px-5 py-4 border-b border-brand-800/60 lg:border-none lg:py-5">
+          <div className="flex items-center gap-2 text-lg font-bold text-white tracking-wide">
+            <Sprout className="h-6 w-6 text-brand-500" /> AgroCane 360
+          </div>
+          <button
+            onClick={() => setOpen(false)}
+            className="rounded-lg p-1.5 text-brand-300 hover:bg-brand-800 hover:text-white lg:hidden"
+            aria-label="Close sidebar"
+          >
+            <X className="h-5 w-5" />
+          </button>
         </div>
-        <nav className="space-y-1 px-3 pb-6">
+        <nav className="space-y-1 px-3 py-3 pb-8">
           {items.map(({ to, label, icon: Icon, end, external }) =>
             external ? (
               <a
@@ -70,7 +79,7 @@ export default function DashboardLayout() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm transition text-brand-100 hover:bg-brand-700/60"
+                className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition text-brand-100 hover:bg-brand-700/60"
               >
                 <div className="flex items-center gap-3">
                   <Icon className="h-5 w-5 text-emerald-400" />
@@ -85,8 +94,8 @@ export default function DashboardLayout() {
                 end={end}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition ${
-                    isActive ? "bg-brand-600 text-white" : "hover:bg-brand-700/60"
+                  `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+                    isActive ? "bg-brand-600 text-white shadow-xs" : "hover:bg-brand-700/60"
                   }`
                 }
               >
@@ -97,28 +106,58 @@ export default function DashboardLayout() {
         </nav>
       </aside>
 
-      {open && <div className="fixed inset-0 z-40 bg-black/40 md:hidden" onClick={() => setOpen(false)} />}
+      {open && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs transition-opacity lg:hidden"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Main area */}
-      <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center justify-between border-b bg-white px-4 py-3">
-          <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle sidebar">
-            {open ? <X /> : <Menu />}
-          </button>
-          <p className="hidden text-sm text-gray-500 md:block">
-            {user?.role === "admin" ? "Admin Portal" : "Farmer Portal"}
-          </p>
-          <div className="flex items-center gap-4">
-            <span className="text-sm font-medium">{user?.name}</span>
+      <div className="flex min-w-0 flex-1 flex-col overflow-x-hidden">
+        <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-white/95 px-3 py-2.5 sm:px-4 sm:py-3 backdrop-blur">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-100 lg:hidden cursor-pointer"
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle navigation menu"
+              aria-expanded={open}
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+            <div className="flex items-center gap-1.5">
+              <span className="font-bold text-brand-900 text-sm sm:text-base lg:hidden">
+                AgroCane 360
+              </span>
+              <span className="hidden text-xs font-semibold uppercase tracking-wider text-gray-400 sm:inline lg:hidden">
+                &bull;
+              </span>
+              <p className="hidden text-xs sm:text-sm font-medium text-gray-600 sm:block">
+                {user?.role === "admin" ? "Mill Admin Portal" : "Farmer Portal"}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 text-right">
+              <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse hidden sm:block" />
+              <span className="max-w-[100px] sm:max-w-[180px] truncate text-xs sm:text-sm font-medium text-gray-800">
+                {user?.name}
+              </span>
+            </div>
             <button
               onClick={handleLogout}
-              className="flex items-center gap-1 rounded-lg border px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
+              className="flex items-center gap-1.5 rounded-xl border border-gray-200 px-2.5 py-1.5 text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-red-600 transition cursor-pointer"
+              title="Logout"
             >
-              <LogOut className="h-4 w-4" /> Logout
+              <LogOut className="h-4 w-4" />
+              <span className="hidden sm:inline">Logout</span>
             </button>
           </div>
         </header>
-        <main className="flex-1 p-4 md:p-8">
+
+        <main className="flex-1 p-3.5 sm:p-5 md:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>

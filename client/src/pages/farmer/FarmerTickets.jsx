@@ -89,14 +89,14 @@ export default function FarmerTickets() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-brand-900">My Sugarcane Supply Tickets</h1>
-          <p className="text-sm text-gray-500">Track requested, approved, and fulfilled supply chits</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-brand-900">My Sugarcane Supply Tickets</h1>
+          <p className="text-xs sm:text-sm text-gray-500">Track requested, approved, and fulfilled supply chits</p>
         </div>
         <button
           onClick={() => setModalOpen(true)}
-          className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 font-medium text-white shadow-sm hover:bg-brand-700"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-brand-700 cursor-pointer self-start sm:self-auto"
         >
           <Plus className="h-4 w-4" /> Request Ticket
         </button>
@@ -109,7 +109,7 @@ export default function FarmerTickets() {
           action={
             <button
               onClick={() => setModalOpen(true)}
-              className="rounded-xl bg-brand-600 px-5 py-2.5 font-medium text-white hover:bg-brand-700"
+              className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 cursor-pointer"
             >
               Request your first ticket
             </button>
@@ -117,37 +117,37 @@ export default function FarmerTickets() {
         />
       ) : (
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm text-gray-600">
+          <div className="overflow-x-auto table-responsive">
+            <table className="min-w-[640px] w-full text-left text-sm text-gray-600">
               <thead className="border-b bg-gray-50 text-xs font-semibold uppercase text-gray-500">
                 <tr>
-                  <th className="px-6 py-4">Ticket Number</th>
-                  <th className="px-6 py-4">Field</th>
-                  <th className="px-6 py-4">Allocated / Supplied</th>
-                  <th className="px-6 py-4">Valid Window</th>
-                  <th className="px-6 py-4">Status</th>
-                  <th className="px-6 py-4">Slot</th>
+                  <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Ticket Number</th>
+                  <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Field</th>
+                  <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Allocated / Supplied</th>
+                  <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Valid Window</th>
+                  <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Status</th>
+                  <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Slot</th>
                 </tr>
               </thead>
               <tbody className="divide-y">
                 {tickets.map((t) => (
                   <tr key={t._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-semibold text-gray-900">{t.ticketNumber}</td>
-                    <td className="px-6 py-4">{t.field?.name || "General Allocation"}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-semibold text-gray-900 whitespace-nowrap">{t.ticketNumber}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">{t.field?.name || "General Allocation"}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <span className="font-semibold text-gray-900">{t.allocatedQuantityTonnes}</span> tonnes
                       <div className="text-xs text-gray-400">Supplied: {t.suppliedQuantityTonnes} T</div>
                     </td>
-                    <td className="px-6 py-4 text-xs">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs whitespace-nowrap">
                       {formatDate(t.validFrom)} &mdash; {formatDate(t.expiryDate)}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">
                       <StatusBadge status={t.status} />
                       {t.reviewReason && (
-                        <p className="mt-1 text-xs text-gray-400 italic">Note: {t.reviewReason}</p>
+                        <p className="mt-1 text-xs text-gray-400 italic max-w-xs truncate">Note: {t.reviewReason}</p>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-xs text-gray-500">{t.deliverySlot || "—"}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs text-gray-500 whitespace-nowrap">{t.deliverySlot || "—"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -158,11 +158,11 @@ export default function FarmerTickets() {
 
       {/* Ticket Request Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-lg rounded-3xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3.5 sm:p-4">
+          <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-6 shadow-xl border border-gray-100">
             <div className="flex items-center justify-between border-b pb-4">
-              <h2 className="text-xl font-bold text-gray-900">Request Sugarcane Supply Ticket</h2>
-              <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-gray-600">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Request Sugarcane Supply Ticket</h2>
+              <button onClick={() => setModalOpen(false)} className="rounded-lg p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -228,18 +228,18 @@ export default function FarmerTickets() {
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-3">
+              <div className="flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="rounded-xl border px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  className="rounded-xl border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-50"
+                  className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
                 >
                   {submitting ? "Submitting..." : "Submit Request"}
                 </button>

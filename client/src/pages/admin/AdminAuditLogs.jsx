@@ -30,15 +30,15 @@ export default function AdminAuditLogs() {
       {error && <ErrorMessage message={error} />}
 
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-gray-600">
+        <div className="overflow-x-auto table-responsive">
+          <table className="min-w-[650px] w-full text-left text-sm text-gray-600">
             <thead className="border-b bg-gray-50 text-xs font-semibold uppercase text-gray-500">
               <tr>
-                <th className="px-6 py-4">Action</th>
-                <th className="px-6 py-4">Admin</th>
-                <th className="px-6 py-4">Target Entity</th>
-                <th className="px-6 py-4">IP Address</th>
-                <th className="px-6 py-4">Timestamp</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Action</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Admin</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Target Entity</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">IP Address</th>
+                <th className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">Timestamp</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -51,11 +51,11 @@ export default function AdminAuditLogs() {
               ) : (
                 logs.map((l) => (
                   <tr key={l._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-mono font-bold text-brand-900">{l.action}</td>
-                    <td className="px-6 py-4">{l.admin?.name || "System Automated"}</td>
-                    <td className="px-6 py-4 font-mono text-xs">{l.targetModel || "—"}</td>
-                    <td className="px-6 py-4 font-mono text-xs text-gray-400">{l.ipAddress || "127.0.0.1"}</td>
-                    <td className="px-6 py-4 text-xs text-gray-500">{formatDate(l.createdAt)}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-mono font-bold text-brand-900 whitespace-nowrap">{l.action}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 whitespace-nowrap">{l.admin?.name || "System Automated"}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-mono text-xs whitespace-nowrap">{l.targetModel || "—"}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 font-mono text-xs text-gray-400 whitespace-nowrap">{l.ipAddress || "127.0.0.1"}</td>
+                    <td className="px-4 py-3.5 sm:px-6 sm:py-4 text-xs text-gray-500 whitespace-nowrap">{formatDate(l.createdAt)}</td>
                   </tr>
                 ))
               )}

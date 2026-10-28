@@ -64,13 +64,13 @@ export default function Profile() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-2xl font-bold text-brand-900">My Profile</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-brand-900">My Profile</h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-6 rounded-2xl bg-white p-6 shadow-sm">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl bg-white p-4 sm:p-6 shadow-sm border border-brand-100">
         {message.text && (
           <p
             role={message.type === "error" ? "alert" : "status"}
-            className={`mb-4 rounded-lg p-3 text-sm ${
+            className={`mb-4 rounded-xl p-3 text-sm ${
               message.type === "error" ? "bg-red-50 text-red-700" : "bg-green-50 text-green-700"
             }`}
           >
@@ -79,22 +79,22 @@ export default function Profile() {
         )}
 
         {/* Read-only details: the server does not allow changing these */}
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-3">
           <div>
-            <label className="block text-sm font-medium">Farmer ID</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">Farmer ID</label>
             <div className={readOnlyCls}>{farmer.farmerId || "—"}</div>
           </div>
           <div>
-            <label className="block text-sm font-medium">Mobile number</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">Mobile number</label>
             <div className={readOnlyCls}>{farmer.mobile}</div>
           </div>
           <div>
-            <label className="block text-sm font-medium">Registered on</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">Registered on</label>
             <div className={readOnlyCls}>{formatDate(farmer.createdAt)}</div>
           </div>
         </div>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="mt-5 sm:mt-6 grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
           <div>
             <label htmlFor="name" className="block text-sm font-medium">Full name</label>
             <input id="name" className={inputCls} {...register("name", { required: "Name is required", minLength: { value: 2, message: "Too short" } })} />
