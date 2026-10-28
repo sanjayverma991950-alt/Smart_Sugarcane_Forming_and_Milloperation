@@ -1,0 +1,39 @@
+const errorHandler = (err, req, res, next) => {
+  let error = { ...err };
+  error.message = err.message;
+
+  // Log to console for debugging
+  console.error("[Server Error]", err);
+
+  // Mongoose Bad ObjectId
+  if (err.name === "CastError") {
+    const message = `Resource not found with id of ${err.value}`;
+    return res.status(404).json({ message });
+  }
+
+  // Mongoose duplicate key
+  if (err.code === 11000) {
+    const field = Object.keys(err.keyValue)[0];
+    const message = `Duplicate value entered for ${field}. Please use another value.`;
+    return res.status(400).json({ message });
+  }
+
+  // Mongoose validation error
+  if (err.name === "ValidationError") {
+    const message = Object.values(err.errors)
+      .map((val) => val.message)
+      .join(", ");
+    return res.status(400).json({ message });
+  }
+
+  // Multer errors
+  if (err.code === "LIMIT_FILE_SIZE") {
+    return res.status(400).json({ message: "File too large. Maximum size is 5MB." });
+  }
+
+  res.status(err.statusCode || 500).json({
+    message: error.message || "Internal Server Error",
+  });
+};
+
+module.exports = errorHandler;
