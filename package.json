@@ -1,0 +1,17 @@
+{
+  "name": "agrocane-360",
+  "version": "1.0.0",
+  "description": "AgroCane 360 - Smart Sugarcane Farming & Mill Operations Platform",
+  "scripts": {
+    "start": "node server/src/server.js",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "seed": "node server/src/scripts/seed.js",
+    "test:api": "node server/src/scripts/test-api.js",
+    "install:all": "npm --prefix server install && npm --prefix client install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
