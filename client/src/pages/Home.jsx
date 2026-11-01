@@ -213,36 +213,6 @@ export default function Home() {
           weights. All financial accounting and weighment figures come strictly from verified database records.
         </p>
       </section>
-
-      {/* Ready to get started CTA */}
-      <section className="bg-brand-900 py-16 text-white text-center">
-        <div className="mx-auto max-w-4xl px-4">
-          <h2 className="text-2xl sm:text-3xl font-extrabold">Ready to Get Started?</h2>
-          <p className="mt-3 text-brand-200 max-w-xl mx-auto text-sm sm:text-base">
-            Create your farmer account today to manage fields, request tickets, and track deliveries and payments.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link
-              to="/register"
-              className="rounded-xl bg-white px-6 py-3 font-semibold text-brand-900 shadow-sm hover:bg-brand-50 transition"
-            >
-              Register Farmer Account
-            </Link>
-            <Link
-              to="/login"
-              className="rounded-xl border border-brand-400 bg-brand-800/60 px-6 py-3 font-semibold text-white hover:bg-brand-800 transition"
-            >
-              Farmer Login
-            </Link>
-            <Link
-              to="/contact"
-              className="rounded-xl border border-brand-400/40 px-6 py-3 font-semibold text-brand-200 hover:text-white transition"
-            >
-              Contact Support
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
