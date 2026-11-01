@@ -2,9 +2,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Public pages
 import Home from "./pages/Home";
+import Features from "./pages/Features";
+import HowItWorks from "./pages/HowItWorks";
+import FAQ from "./pages/FAQ";
+import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminLogin from "./pages/AdminLogin";
@@ -44,58 +49,65 @@ import AdminAuditLogs from "./pages/admin/AdminAuditLogs";
 
 export default function App() {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route element={<PublicLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-      </Route>
-
-      {/* Farmer Portal */}
-      <Route element={<ProtectedRoute role="farmer" />}>
-        <Route element={<DashboardLayout />}>
-          <Route path="/farmer" element={<FarmerDashboard />} />
-          <Route path="/farmer/profile" element={<Profile />} />
-          <Route path="/farmer/fields" element={<Fields />} />
-          <Route path="/farmer/fields/new" element={<FieldForm />} />
-          <Route path="/farmer/fields/:id" element={<FieldDetails />} />
-          <Route path="/farmer/fields/:id/edit" element={<FieldForm />} />
-          <Route path="/farmer/season" element={<FarmerSeason />} />
-          <Route path="/farmer/tickets" element={<FarmerTickets />} />
-          <Route path="/farmer/deliveries" element={<FarmerDeliveries />} />
-          <Route path="/farmer/payments" element={<FarmerPayments />} />
-          <Route path="/farmer/assistant" element={<FarmerAssistant />} />
-          <Route path="/farmer/voice" element={<FarmerVoiceAssistant />} />
-          <Route path="/farmer/crop-disease" element={<FarmerCropDisease />} />
-          <Route path="/farmer/crop-history" element={<FarmerCropHistory />} />
-          <Route path="/farmer/weather" element={<FarmerWeather />} />
-          <Route path="/farmer/notifications" element={<FarmerNotifications />} />
-          <Route path="/farmer/complaints" element={<FarmerComplaints />} />
+    <>
+      <ScrollToTop />
+      <Routes>
+        {/* Public Routes */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
-      </Route>
 
-      {/* Admin Portal */}
-      <Route element={<ProtectedRoute role="admin" />}>
-        <Route element={<DashboardLayout />}>
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/farmers" element={<AdminFarmers />} />
-          <Route path="/admin/seasons" element={<AdminSeasons />} />
-          <Route path="/admin/tickets" element={<AdminTickets />} />
-          <Route path="/admin/deliveries" element={<AdminDeliveries />} />
-          <Route path="/admin/payments" element={<AdminPayments />} />
-          <Route path="/admin/rates" element={<AdminRates />} />
-          <Route path="/admin/supply-forecast" element={<AdminSupplyForecast />} />
-          <Route path="/admin/reports" element={<AdminReports />} />
-          <Route path="/admin/announcements" element={<AdminAnnouncements />} />
-          <Route path="/admin/complaints" element={<AdminComplaints />} />
-          <Route path="/admin/audit-logs" element={<AdminAuditLogs />} />
+        {/* Farmer Portal */}
+        <Route element={<ProtectedRoute role="farmer" />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/farmer" element={<FarmerDashboard />} />
+            <Route path="/farmer/profile" element={<Profile />} />
+            <Route path="/farmer/fields" element={<Fields />} />
+            <Route path="/farmer/fields/new" element={<FieldForm />} />
+            <Route path="/farmer/fields/:id" element={<FieldDetails />} />
+            <Route path="/farmer/fields/:id/edit" element={<FieldForm />} />
+            <Route path="/farmer/season" element={<FarmerSeason />} />
+            <Route path="/farmer/tickets" element={<FarmerTickets />} />
+            <Route path="/farmer/deliveries" element={<FarmerDeliveries />} />
+            <Route path="/farmer/payments" element={<FarmerPayments />} />
+            <Route path="/farmer/assistant" element={<FarmerAssistant />} />
+            <Route path="/farmer/voice" element={<FarmerVoiceAssistant />} />
+            <Route path="/farmer/crop-disease" element={<FarmerCropDisease />} />
+            <Route path="/farmer/crop-history" element={<FarmerCropHistory />} />
+            <Route path="/farmer/weather" element={<FarmerWeather />} />
+            <Route path="/farmer/notifications" element={<FarmerNotifications />} />
+            <Route path="/farmer/complaints" element={<FarmerComplaints />} />
+          </Route>
         </Route>
-      </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        {/* Admin Portal */}
+        <Route element={<ProtectedRoute role="admin" />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/farmers" element={<AdminFarmers />} />
+            <Route path="/admin/seasons" element={<AdminSeasons />} />
+            <Route path="/admin/tickets" element={<AdminTickets />} />
+            <Route path="/admin/deliveries" element={<AdminDeliveries />} />
+            <Route path="/admin/payments" element={<AdminPayments />} />
+            <Route path="/admin/rates" element={<AdminRates />} />
+            <Route path="/admin/supply-forecast" element={<AdminSupplyForecast />} />
+            <Route path="/admin/reports" element={<AdminReports />} />
+            <Route path="/admin/announcements" element={<AdminAnnouncements />} />
+            <Route path="/admin/complaints" element={<AdminComplaints />} />
+            <Route path="/admin/audit-logs" element={<AdminAuditLogs />} />
+          </Route>
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 }

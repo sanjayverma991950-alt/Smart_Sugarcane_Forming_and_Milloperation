@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
   Sprout, Ticket, Wallet, CloudSun, Camera, Mic, BarChart3, Bell,
-  ChevronDown, ShieldCheck, ArrowRight,
+  ChevronDown, ShieldCheck, ArrowRight, Mail,
 } from "lucide-react";
 
 const features = [
@@ -83,7 +83,12 @@ export default function Home() {
 
       {/* Features */}
       <section id="features" className="mx-auto max-w-6xl px-3.5 sm:px-4 py-12 sm:py-16">
-        <h2 className="text-center text-2xl sm:text-3xl font-bold text-brand-900">Platform features</h2>
+        <div className="flex flex-col items-center text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-brand-900">Platform features</h2>
+          <p className="mt-2 text-sm text-gray-600 max-w-xl">
+            Everything sugarcane farmers and sugar mills need for hassle-free indents, weighments, and accounts.
+          </p>
+        </div>
         <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map(({ icon: Icon, title, text }) => (
             <div key={title} className="rounded-2xl border border-brand-100 bg-white p-5 sm:p-6 shadow-sm">
@@ -95,12 +100,25 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <div className="mt-8 text-center">
+          <Link
+            to="/features"
+            className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-white shadow-xs hover:bg-brand-700 transition"
+          >
+            Explore All Features in Detail <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </section>
 
       {/* How it works */}
       <section id="how-it-works" className="bg-earth-100 py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-3.5 sm:px-4">
-          <h2 className="text-center text-2xl sm:text-3xl font-bold text-brand-900">How it works</h2>
+          <div className="text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-brand-900">How it works</h2>
+            <p className="mt-2 text-sm text-gray-600 max-w-xl mx-auto">
+              A transparent 4-stage process from field registration to delivery weighment and payment.
+            </p>
+          </div>
           <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
               <div key={s.n} className="rounded-2xl bg-white p-5 sm:p-6 text-center shadow-sm">
@@ -111,6 +129,14 @@ export default function Home() {
                 <p className="mt-1 text-sm text-gray-600">{s.text}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              to="/how-it-works"
+              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-white shadow-xs hover:bg-brand-700 transition"
+            >
+              See Complete Step-by-Step Workflow <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -143,13 +169,50 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <div className="mt-6 text-center">
+          <Link
+            to="/faq"
+            className="inline-flex items-center gap-2 font-semibold text-brand-700 hover:underline text-sm"
+          >
+            View all frequently asked questions & search answers <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </section>
 
       {/* Contact */}
-      <section id="contact" className="bg-brand-50 py-12 text-center">
-        <Bell className="mx-auto h-8 w-8 text-brand-600" />
-        <h2 className="mt-2 text-xl font-bold text-brand-900">Contact</h2>
-        <p className="mt-1 text-gray-600">Email: support@example.com (replace with your real contact)</p>
+      <section id="contact" className="bg-brand-50 py-16 text-center border-t border-brand-100">
+        <div className="mx-auto max-w-2xl px-4">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+            <Mail className="h-6 w-6" />
+          </div>
+          <h2 className="mt-3 text-2xl font-bold text-brand-900">Contact Us</h2>
+          <p className="mt-2 text-sm sm:text-base text-gray-600">
+            Have questions about cane tickets, deliveries, payments, or mill operations? Reach our dedicated support team directly:
+          </p>
+          <div className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white border border-brand-200 px-4 py-2 shadow-xs">
+            <span className="text-xs sm:text-sm text-gray-500">Email:</span>
+            <a
+              href="mailto:sanjay12345@gmail.com"
+              className="text-sm sm:text-base font-bold text-brand-700 hover:underline"
+            >
+              sanjay12345@gmail.com
+            </a>
+          </div>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <a
+              href="mailto:sanjay12345@gmail.com"
+              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-brand-700 transition"
+            >
+              <Mail className="h-4 w-4" /> Send Email
+            </a>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-xl border border-brand-600 px-5 py-2.5 text-sm font-semibold text-brand-700 hover:bg-brand-100/50 transition"
+            >
+              Open Dedicated Contact Page <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
       </section>
     </>
   );
