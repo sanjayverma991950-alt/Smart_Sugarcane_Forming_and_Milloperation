@@ -1,60 +1,105 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import {
-  Sprout, Ticket, Wallet, CloudSun, Camera, Mic, BarChart3, Bell,
-  ChevronDown, ShieldCheck, ArrowRight, Mail,
+  Sprout,
+  ShieldCheck,
+  ArrowRight,
+  Sparkles,
+  Layers,
+  Route,
+  HelpCircle,
+  Mail,
+  UserCheck,
+  Scale,
+  Wallet,
 } from "lucide-react";
 
-const features = [
-  { icon: Ticket, title: "Supply Tickets", text: "Request sugarcane supply tickets and track approval and delivery status." },
-  { icon: Wallet, title: "Payment Tracking", text: "See verified supply, payable amount, paid amount and balance clearly." },
-  { icon: Camera, title: "Crop Disease Check", text: "Upload a leaf photo for preliminary AI guidance on possible problems." },
-  { icon: CloudSun, title: "Weather & Irrigation", text: "Forecast-based alerts and irrigation suggestions for your fields." },
-  { icon: Mic, title: "Hindi & English Voice", text: "Ask about tickets, payments and season dates by voice or text." },
-  { icon: BarChart3, title: "Mill Analytics", text: "Admins get procurement reports and supply forecasts from real records." },
+const portalCards = [
+  {
+    icon: Layers,
+    title: "Platform Features",
+    desc: "Explore digital supply tickets, weighbridge integration, transparent payment ledgers, and AI agronomy tools.",
+    link: "/features",
+    cta: "Explore Features",
+    badge: "Capabilities",
+  },
+  {
+    icon: Route,
+    title: "How It Works",
+    desc: "Follow the step-by-step workflow connecting farmers, field supervisors, and sugar mill operations from indent to payout.",
+    link: "/how-it-works",
+    cta: "View Workflow",
+    badge: "Process",
+  },
+  {
+    icon: HelpCircle,
+    title: "Help & FAQ",
+    desc: "Find clear answers to common questions regarding ticket quotas, delivery weighments, payments, and data privacy.",
+    link: "/faq",
+    cta: "Browse Answers",
+    badge: "Help Center",
+  },
+  {
+    icon: Mail,
+    title: "Support & Contact",
+    desc: "Need direct assistance? Get in touch with our support team at sanjay12345@gmail.com or send an inquiry.",
+    link: "/contact",
+    cta: "Get In Touch",
+    badge: "Contact",
+  },
 ];
 
-const steps = [
-  { n: 1, title: "Register", text: "Create your farmer account and add your fields." },
-  { n: 2, title: "Request a Ticket", text: "Submit a supply ticket request for the active season." },
-  { n: 3, title: "Admin Review", text: "The mill reviews and approves according to its rules." },
-  { n: 4, title: "Deliver & Track", text: "Verified weighments update your ticket and payment." },
-];
-
-const faqs = [
-  { q: "Is the AI advice official?", a: "No. AI output is general guidance only. It is not an official instruction from a sugar mill or government, and it is not a confirmed diagnosis." },
-  { q: "Can I see other farmers' data?", a: "No. You can only see your own records, and the server enforces this." },
-  { q: "Does the app transfer money?", a: "No. AgroCane 360 records and tracks payments entered by authorized mill staff. It does not move money." },
-  { q: "Which languages are supported?", a: "English and Hindi, including Hinglish typing in the assistant." },
+const highlights = [
+  {
+    icon: Scale,
+    title: "Verified Weighbridge Sync",
+    desc: "Zero arithmetic errors with automated Gross, Tare, and Net Cane weight recording at the mill gate.",
+  },
+  {
+    icon: Wallet,
+    title: "Transparent SAP Accounting",
+    desc: "Complete ledger tracking verified deliveries, official rates per quintal, advance deductions, and balances.",
+  },
+  {
+    icon: UserCheck,
+    title: "Role-Based Data Privacy",
+    desc: "Strict isolation ensures farmers only access their personal plot records and financial ledgers.",
+  },
 ];
 
 export default function Home() {
-  const [openFaq, setOpenFaq] = useState(null);
-
   return (
     <>
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-50 via-white to-earth-100">
-        <div className="mx-auto grid max-w-6xl items-center gap-8 sm:gap-10 px-3.5 sm:px-4 py-10 sm:py-16 md:grid-cols-2 md:py-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 sm:gap-10 px-3.5 sm:px-4 py-12 sm:py-16 md:grid-cols-2 md:py-24">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-3 py-1 text-xs sm:text-sm font-medium text-brand-700">
+            <span className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-3.5 py-1 text-xs sm:text-sm font-semibold text-brand-700">
               <Sprout className="h-4 w-4" /> AI-driven sugarcane platform
             </span>
             <h1 className="mt-4 text-3xl font-extrabold leading-tight text-brand-900 sm:text-4xl md:text-5xl">
               Smarter sugarcane farming and mill operations
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-gray-600">
-              Manage fields, tickets, deliveries and payments in one place, with weather alerts,
-              crop guidance and a Hindi/English voice assistant.
+            <p className="mt-4 text-base sm:text-lg text-gray-600 leading-relaxed">
+              Manage fields, digital supply tickets, weighbridge deliveries, and payments in one unified place—with
+              AI crop disease scanning, weather alerts, and a bilingual voice assistant.
             </p>
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
-              <Link to="/register" className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 sm:px-6 py-3 font-semibold text-white shadow-sm hover:bg-brand-700 transition">
+              <Link
+                to="/register"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 sm:px-6 py-3 font-semibold text-white shadow-sm hover:bg-brand-700 transition"
+              >
                 Farmer Registration <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/login" className="inline-flex items-center justify-center rounded-xl border border-brand-600 px-5 sm:px-6 py-3 font-semibold text-brand-700 hover:bg-brand-50 transition">
+              <Link
+                to="/login"
+                className="inline-flex items-center justify-center rounded-xl border border-brand-600 px-5 sm:px-6 py-3 font-semibold text-brand-700 hover:bg-brand-50 transition"
+              >
                 Farmer Login
               </Link>
-              <Link to="/admin/login" className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-5 sm:px-6 py-3 font-semibold text-gray-700 hover:bg-gray-50 transition">
+              <Link
+                to="/admin/login"
+                className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-5 sm:px-6 py-3 font-semibold text-gray-700 hover:bg-gray-50 transition"
+              >
                 Admin Login
               </Link>
             </div>
@@ -75,141 +120,125 @@ export default function Home() {
               ))}
             </div>
             <p className="mt-4 text-center text-xs text-gray-400">
-              Illustrative preview. Replace with real photos or illustrations later.
+              Live operational dashboard for registered sugarcane growers and sugar mill administrations.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section id="features" className="mx-auto max-w-6xl px-3.5 sm:px-4 py-12 sm:py-16">
-        <div className="flex flex-col items-center text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-brand-900">Platform features</h2>
-          <p className="mt-2 text-sm text-gray-600 max-w-xl">
-            Everything sugarcane farmers and sugar mills need for hassle-free indents, weighments, and accounts.
+      {/* Explore Modules (Portal Navigation) */}
+      <section className="mx-auto max-w-6xl px-3.5 sm:px-4 py-16 sm:py-20">
+        <div className="text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 border border-brand-200 px-3.5 py-1 text-xs font-bold text-brand-800">
+            <Sparkles className="h-3.5 w-3.5 text-brand-600" /> Platform Directory
+          </span>
+          <h2 className="mt-3 text-2xl sm:text-3xl font-extrabold text-brand-900">
+            Explore AgroCane 360
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+            Choose a section below to learn more about our features, process, answers to common questions, or contact support.
           </p>
         </div>
-        <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map(({ icon: Icon, title, text }) => (
-            <div key={title} className="rounded-2xl border border-brand-100 bg-white p-5 sm:p-6 shadow-sm">
-              <div className="mb-4 inline-flex rounded-xl bg-brand-100 p-3 text-brand-700">
-                <Icon className="h-6 w-6" />
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {portalCards.map((card) => {
+            const Icon = card.icon;
+            return (
+              <div
+                key={card.title}
+                className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:border-brand-300"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div className="inline-flex rounded-xl bg-brand-100 p-3 text-brand-700">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-600">
+                      {card.badge}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 text-lg font-bold text-gray-900">{card.title}</h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">{card.desc}</p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-gray-100">
+                  <Link
+                    to={card.link}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-800 hover:gap-2 transition-all"
+                  >
+                    {card.cta} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
-              <h3 className="font-semibold text-gray-900">{title}</h3>
-              <p className="mt-2 text-sm text-gray-600 leading-relaxed">{text}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-8 text-center">
-          <Link
-            to="/features"
-            className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-white shadow-xs hover:bg-brand-700 transition"
-          >
-            Explore All Features in Detail <ArrowRight className="h-4 w-4" />
-          </Link>
+            );
+          })}
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="bg-earth-100 py-12 sm:py-16">
+      {/* Trust & Transparency Pillars */}
+      <section className="bg-earth-100/60 py-16 sm:py-20 border-y border-brand-100/60">
         <div className="mx-auto max-w-6xl px-3.5 sm:px-4">
           <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-brand-900">How it works</h2>
-            <p className="mt-2 text-sm text-gray-600 max-w-xl mx-auto">
-              A transparent 4-stage process from field registration to delivery weighment and payment.
+            <h2 className="text-2xl sm:text-3xl font-bold text-brand-900">
+              Built on Trust, Accuracy, and Transparency
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+              Bridging the gap between sugarcane producers and mill management with modern digital standards.
             </p>
           </div>
-          <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s) => (
-              <div key={s.n} className="rounded-2xl bg-white p-5 sm:p-6 text-center shadow-sm">
-                <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 font-bold text-white">
-                  {s.n}
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {highlights.map((h) => {
+              const Icon = h.icon;
+              return (
+                <div key={h.title} className="rounded-2xl bg-white p-6 shadow-sm border border-brand-100">
+                  <div className="inline-flex rounded-xl bg-brand-100 p-3 text-brand-700">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-4 font-bold text-gray-900 text-lg">{h.title}</h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">{h.desc}</p>
                 </div>
-                <h3 className="mt-3 font-semibold text-gray-900">{s.title}</h3>
-                <p className="mt-1 text-sm text-gray-600">{s.text}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Link
-              to="/how-it-works"
-              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-white shadow-xs hover:bg-brand-700 transition"
-            >
-              See Complete Step-by-Step Workflow <ArrowRight className="h-4 w-4" />
-            </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* AI notice */}
+      {/* AI Safeguard Notice */}
       <section className="mx-auto max-w-4xl px-4 py-16 text-center">
-        <ShieldCheck className="mx-auto h-10 w-10 text-brand-600" />
+        <ShieldCheck className="mx-auto h-12 w-12 text-brand-600" />
         <h2 className="mt-3 text-2xl font-bold text-brand-900">AI that stays in its lane</h2>
-        <p className="mt-3 text-gray-600">
-          AI explains and advises. It never approves tickets, records payments or changes verified
-          weights. Account numbers always come from verified database records.
+        <p className="mt-3 text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          AI explains and advises. It never approves tickets, records payments, or changes verified
+          weights. All financial accounting and weighment figures come strictly from verified database records.
         </p>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="mx-auto max-w-3xl px-4 pb-16">
-        <h2 className="text-center text-3xl font-bold text-brand-900">Frequently asked questions</h2>
-        <div className="mt-8 space-y-3">
-          {faqs.map((f, i) => (
-            <div key={f.q} className="rounded-xl border bg-white">
-              <button
-                className="flex w-full items-center justify-between px-5 py-4 text-left font-medium"
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                aria-expanded={openFaq === i}
-              >
-                {f.q}
-                <ChevronDown className={`h-5 w-5 transition ${openFaq === i ? "rotate-180" : ""}`} />
-              </button>
-              {openFaq === i && <p className="px-5 pb-4 text-sm text-gray-600">{f.a}</p>}
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 text-center">
-          <Link
-            to="/faq"
-            className="inline-flex items-center gap-2 font-semibold text-brand-700 hover:underline text-sm"
-          >
-            View all frequently asked questions & search answers <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="bg-brand-50 py-16 text-center border-t border-brand-100">
-        <div className="mx-auto max-w-2xl px-4">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
-            <Mail className="h-6 w-6" />
-          </div>
-          <h2 className="mt-3 text-2xl font-bold text-brand-900">Contact Us</h2>
-          <p className="mt-2 text-sm sm:text-base text-gray-600">
-            Have questions about cane tickets, deliveries, payments, or mill operations? Reach our dedicated support team directly:
+      {/* Ready to get started CTA */}
+      <section className="bg-brand-900 py-16 text-white text-center">
+        <div className="mx-auto max-w-4xl px-4">
+          <h2 className="text-2xl sm:text-3xl font-extrabold">Ready to Get Started?</h2>
+          <p className="mt-3 text-brand-200 max-w-xl mx-auto text-sm sm:text-base">
+            Create your farmer account today to manage fields, request tickets, and track deliveries and payments.
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white border border-brand-200 px-4 py-2 shadow-xs">
-            <span className="text-xs sm:text-sm text-gray-500">Email:</span>
-            <a
-              href="mailto:sanjay12345@gmail.com"
-              className="text-sm sm:text-base font-bold text-brand-700 hover:underline"
-            >
-              sanjay12345@gmail.com
-            </a>
-          </div>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a
-              href="mailto:sanjay12345@gmail.com"
-              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-brand-700 transition"
+            <Link
+              to="/register"
+              className="rounded-xl bg-white px-6 py-3 font-semibold text-brand-900 shadow-sm hover:bg-brand-50 transition"
             >
-              <Mail className="h-4 w-4" /> Send Email
-            </a>
+              Register Farmer Account
+            </Link>
+            <Link
+              to="/login"
+              className="rounded-xl border border-brand-400 bg-brand-800/60 px-6 py-3 font-semibold text-white hover:bg-brand-800 transition"
+            >
+              Farmer Login
+            </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-xl border border-brand-600 px-5 py-2.5 text-sm font-semibold text-brand-700 hover:bg-brand-100/50 transition"
+              className="rounded-xl border border-brand-400/40 px-6 py-3 font-semibold text-brand-200 hover:text-white transition"
             >
-              Open Dedicated Contact Page <ArrowRight className="h-4 w-4" />
+              Contact Support
             </Link>
           </div>
         </div>
