@@ -83,26 +83,6 @@ export default function Home() {
               Manage fields, digital supply tickets, weighbridge deliveries, and payments in one unified place—with
               AI crop disease scanning, weather alerts, and a bilingual voice assistant.
             </p>
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
-              <Link
-                to="/register"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 sm:px-6 py-3 font-semibold text-white shadow-sm hover:bg-brand-700 transition"
-              >
-                Farmer Registration <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/login"
-                className="inline-flex items-center justify-center rounded-xl border border-brand-600 px-5 sm:px-6 py-3 font-semibold text-brand-700 hover:bg-brand-50 transition"
-              >
-                Farmer Login
-              </Link>
-              <Link
-                to="/admin/login"
-                className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-5 sm:px-6 py-3 font-semibold text-gray-700 hover:bg-gray-50 transition"
-              >
-                Admin Login
-              </Link>
-            </div>
           </div>
 
           <div className="rounded-3xl bg-white p-4 sm:p-6 md:p-8 shadow-lg border border-brand-100">
